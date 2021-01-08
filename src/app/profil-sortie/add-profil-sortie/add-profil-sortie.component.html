@@ -1,0 +1,15 @@
+<div class="card p-3 shadow rounded">
+  <div class="card-header text-center title mb-2"><h3>Ajouter Profil de Sortie <i class="fa fa-user-o"></i></h3></div>
+
+  <form #profilElement="ngForm">
+    <fieldset>
+      <div class="form-group">
+        <label for="nom">Libelle</label>
+        <input type="text" class="form-control" id="nom" ngModel name="libelle" #libelle="ngModel" required>
+      </div>
+
+      <button [disabled]="!profilElement.valid" [routerLink]="['/profil-sortie']" (click)="onSubmit(profilElement.value)" type="submit" class="btn title">Enregistrer</button>
+    </fieldset>
+  </form>
+</div>
+

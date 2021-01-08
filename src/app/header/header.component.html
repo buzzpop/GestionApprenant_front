@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" [routerLink]="['/']"><i class="fa fa-home fa-1x" aria-hidden="true"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" ><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Brief
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Rendus</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" ><i class="fa fa-bandcamp" aria-hidden="true"></i> Explorer</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" href="#"><i class="fa fa-comments" aria-hidden="true"></i> Forum</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" [routerLink]="['/add-promos']">Créer Promos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/referentiels']">Référentiels</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['groupe-competences']">Groupe de Compétences</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['/competences']">Compétences</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Groupe de Tags</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['profil-sortie']">Profil de Sortie</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Users</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" [routerLink]="['users']">Utilisateurs</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" [routerLink]="['profils']">Profils</a>
+
+        </div>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <label>
+        <input #inputElement name="search" class="form-control mr-sm-2" type="text" placeholder="Search">
+      </label>
+    </form>
+    <button class="btn btn-outline-danger" (click)="logOut()">Log Out</button>
+  </div>
+</nav>
+
+

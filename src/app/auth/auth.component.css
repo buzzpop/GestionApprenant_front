@@ -1,0 +1,11 @@
+.login,
+.image {
+  min-height: 30vh;
+}
+
+.bg-image {
+  background-image: url('src/assets/images/Logo-Sonatel-Academy-480_1-1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}

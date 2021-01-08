@@ -1,0 +1,40 @@
+<div class="card bg-light mb-3 w-100">
+  <div class="card-header font-weight-bold text-center">Liste des Profils</div>
+  <div class="card-body">
+    <h4  [routerLink]="['/profils/add']" class="card-title btn btn-primary"><i class="fa fa-user-plus " aria-hidden="true"></i>
+    </h4>
+
+    <table class="table table-bordered text-center">
+      <thead>
+      <tr>
+        <th scope="col">Libelle</th>
+
+        <th scope="col" colspan="2">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let profil of profils">
+        <td>{{profil.libelle}}</td>
+        <td><a class="btn btn-sm btn-outline-primary" [routerLink]="[profil.id,'users']">{{'Liste des '+ profil.libelle}}</a></td>
+        <td> <a class="btn btn-sm btn-outline-danger"  (click)="clickMethod(profil.id)">Supprimer</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+

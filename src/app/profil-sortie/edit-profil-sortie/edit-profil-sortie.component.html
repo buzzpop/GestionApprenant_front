@@ -1,0 +1,14 @@
+<div class="card p-3 shadow rounded">
+  <div class="card-header text-center title mb-2"><h1>Editer<i class="fa fa-user-o"></i></h1></div>
+  <form [formGroup]="form">
+    <fieldset>
+      <div class="form-group">
+        <label for="p">Profil de sortie</label>
+        <input type="text" class="form-control" id="p" formControlName="libelle">
+      </div>
+
+      <button type="submit" (click)="onSubmit()" class="btn title" routerLink="/profil-sortie">Enregistrer</button>
+    </fieldset>
+  </form>
+</div>
+

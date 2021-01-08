@@ -1,0 +1,30 @@
+<div class="row mb-3">
+    <div class="card bg-light w-100">
+      <div class="card-header font-weight-bold text-center">Liste des Profils de Sortie</div>
+      <div class="card-body">
+        <h4  [routerLink]="['/profil-sortie/add']" class="card-title btn btn-primary">Add Profil de Sortie <i class="fa fa-user-plus " aria-hidden="true"></i>
+        </h4>
+
+        <table class="table table-bordered text-center">
+          <thead>
+          <tr>
+            <th scope="col">Libelle</th>
+            <th scope="col" colspan="2">Actions</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let pS of profilSortie">
+            <td>{{pS.libelle}}</td>
+            <td> <a class="btn btn-sm btn-outline-warning"  [routerLink]="['/profil-sortie/edit',pS.id]">Edit</a></td>
+            <td> <a class="btn btn-sm btn-outline-danger"   (click)="clickMethod(pS.id)">Supprimer</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+

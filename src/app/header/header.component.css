@@ -1,0 +1,10 @@
+ul li a{
+  font-size: 17px;
+  font-weight: 500;
+}
+ul li{
+  margin-right: 10px;
+}
+nav{
+  background-color: #328b8a;
+}

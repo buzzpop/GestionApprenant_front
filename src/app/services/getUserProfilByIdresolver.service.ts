@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
-import {UsersService} from './users.service';
+import {ProfilSortieService} from './profil-sortie.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class DetailUserResolverService implements Resolve<any>{
-  detailsUser:any
+export class GetUserProfilByIdresolverService implements Resolve<any>{
+  profilSortie:any
 
-  constructor(private userService: UsersService) { }
+  constructor(private profilSortieService: ProfilSortieService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-      this.detailsUser= this.userService.getUserById(route.params['id'])
+      this.profilSortie= this.profilSortieService.getProfilSortieById(route.params['id'])
 
-    return this.detailsUser
+    return this.profilSortie
   }
 }

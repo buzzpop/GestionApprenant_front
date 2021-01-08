@@ -12,30 +12,23 @@ export class ProfilSortieService {
 
   constructor( private http: HttpClient) { }
 
-  findAllProfil(){
-    return this.http.get(this.env+'/admin/profils?archivage=false',
-      {headers:{'Accept':'application/json'}})
+  getProfilSortie(){
+    return this.http.get(this.env+'/admin/profil_sorties?isArchived=false')
   }
 
-  postProfil(credentials: any){
+  postProfilSortie(credentials: any){
 
-    return this.http.post(this.env+'/admin/profils',credentials)
+    return this.http.post(this.env+'/admin/profil_sorties',credentials)
   }
 
-  usersProfil(id: number){
-
-    return this.http.get(this.env+`/admin/profils/${id}/users`)
+  editProfilSortie(body:any,id:number){
+    return this.http.put(this.env+`/admin/profil_sorties/${id}`,body)
+  }
+  getProfilSortieById(id:number){
+    return this.http.get(this.env+`/admin/profil_sorties/${id}`)
   }
 
-
-
-  form: FormGroup = new FormGroup({
-      $id:new  FormControl(''),
-      libelle: new FormControl('',Validators.required),
-    }
-  )
-
-  archiveProfil(id: number) {
-    return this.http.delete(this.env+`/admin/profils/${id}`)
+  archiveProfilSortie(id: number) {
+    return this.http.delete(this.env+`/admin/profil_sorties/${id}`)
   }
 }

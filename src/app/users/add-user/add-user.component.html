@@ -1,0 +1,50 @@
+<div class="card p-2 shadow rounded">
+  <div class="row  d-flex justify-content-center">
+  <div class="avatar mb-2"><img *ngIf="fileToUpload" src="{{imgURL}}" alt="avatar"></div>
+  </div>
+  <div class="card-header text-center title mb-2"><h1>Ajouter Utilisateur <i class="fa fa-user-o"></i></h1></div>
+
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmitForm(); addUserForm.reset()">
+    <fieldset>
+      <input type="hidden" formControlName="$id">
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control" id="nom"  formControlName="lastname" >
+      </div>
+      <div class="form-group">
+        <label for="prenom">Prenom</label>
+        <input type="text" class="form-control" id="prenom"  formControlName="firstname" >
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email"  formControlName="email" >
+      </div>
+      <div class="form-group" *ngIf="!addUserForm.controls['$id'].value">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password"   formControlName="password" >
+      </div>
+      <div class="form-group">
+        <label for="address">Adresse</label>
+        <input type="text" class="form-control" id="address"  formControlName="address" >
+      </div>
+
+      <div class="form-group">
+        <label for="tel">Tel</label>
+        <input type="tel" class="form-control" id="tel"  formControlName="tel" >
+      </div>
+
+      <div class="form-group">
+        <label for="profil">Profil</label>
+        <select class="form-control" id="profil"  formControlName="profil">
+          <option [disabled]="addUserForm.controls['$id'].value" *ngFor="let p of profil" value="{{p.id}}">{{p.libelle}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="file">Avatar</label>
+        <input   (change)="handleFileInput($event.target)" type="file" class="form-control-file" id="file"  formControlName="avatar" >
+      </div>
+      <button [disabled]="!addUserForm.valid" type="submit" class="btn title">Enregistrer</button>
+    </fieldset>
+  </form>
+</div>
+

@@ -1,0 +1,32 @@
+<div class="card bg-light mb-3 w-100">
+  <div class="card-header font-weight-bold">Les Utilisateurs du Profil Administrateur</div>
+  <div class="card-body">
+    <h4  [routerLink]="['/users/add']" class="card-title btn btn-primary">Ajouter User <i class="fa fa-user-plus " aria-hidden="true"></i>
+    </h4>
+    <table class="table table-bordered text-center">
+      <thead>
+      <tr>
+        <th scope="col">Avatar</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Mail</th>
+        <th scope="col">Profil</th>
+        <th scope="col" colspan="3">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  *ngFor="let up of usersProfil">
+        <th scope="row"><img class="rounded-circle" src="{{'data:image/jpg;base64,'+up.avatar}}" width="50px" height="50px" alt="avatar"></th>
+
+        <td>{{up.lastname}}</td>
+        <td>{{up.firstname}}</td>
+        <td>{{up.email}}</td>
+        <td>{{up.profil.libelle}}</td>
+        <td><a class="btn btn-sm btn-outline-primary">Details</a></td>
+        <td> <a class="btn btn-sm btn-outline-warning">Edit</a></td>
+        <td> <a class="btn btn-sm btn-outline-danger">Supprimer</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

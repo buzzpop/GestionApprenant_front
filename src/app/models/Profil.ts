@@ -1,10 +1,13 @@
-export class Profil{
+import {Deserializable} from './deserializable.interface';
+
+export class Profil implements Deserializable{
   id?: number
- libelle: string
+ libelle: string=""
 
-  public constructor(libelle:string,id?:number) {
-    this.id= id;
-    this.libelle= libelle;
-
+  deserialize(input: any): this {
+  Object.assign(this,input)
+    return this
   }
+
+
 }

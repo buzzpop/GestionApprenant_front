@@ -1,0 +1,41 @@
+<div class="card bg-light mb-5 w-100">
+  <div class="card-header font-weight-bold text-center">Liste des Utilisateurs</div>
+  <div class="card-body">
+    <h4  [routerLink]="['/users/add']" (click)="resetForm()" class="card-title btn btn-primary">Ajouter User <i class="fa fa-user-plus " aria-hidden="true"></i>
+    </h4>
+
+    <table class="table table-bordered text-center">
+      <thead>
+      <tr>
+        <th scope="col">Avatar</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Email</th>
+        <th scope="col">Profil</th>
+        <th scope="col" colspan="3">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row"><img class="rounded-circle" src="{{'data:image/jpg;base64,'+user.avatar}}" width="50px" height="50px" alt="avatar"></th>
+        <td>{{user.lastname}}</td>
+        <td>{{user.firstname}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.profil.libelle}}</td>
+        <td><a class="btn btn-sm btn-outline-primary" [routerLink]="['/users',user.id]">Details</a></td>
+              <td> <a class="btn btn-sm btn-outline-warning" [routerLink]="['/users/edit',user.id]">Edit</a></td>
+              <td> <a class="btn btn-sm btn-outline-danger"  (click)="clickMethod(user.id)">Supprimer</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+

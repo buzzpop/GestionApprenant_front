@@ -1,0 +1,24 @@
+.form{
+  background-color: #eee;
+}
+.form-control{
+  height: 0;
+  padding: 0.5rem
+;
+}
+.title{
+  background-color: #328b8a;
+  color: white;
+}
+.avatar{
+  width: 80px;
+  height: 80px;
+  border: 1px dashed black;
+  border-radius: 50%;
+}
+.avatar img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+

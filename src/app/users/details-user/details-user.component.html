@@ -1,0 +1,42 @@
+<div class="row p-5 d-flex justify-content-center">
+
+  <table class="table table-bordered w-50 text-center border-white">
+  <tr>
+    <th> UserId </th>
+    <td> {{detailsUser.id}} </td>
+  </tr>
+  <tr>
+    <th> Avatar </th>
+    <th scope="row"><img class="rounded-circle" src="{{'data:image/jpg;base64,'+detailsUser.avatar}}" width="50px" height="50px" alt="avatar"></th>
+
+  </tr>
+  <tr>
+    <th> Firstname </th>
+    <td>{{detailsUser.firstname}}</td>
+  </tr>
+  <tr>
+    <th> Lastname </th>
+    <td>{{detailsUser.lastname}}</td>
+  </tr>
+  <tr>
+    <th> EmailId </th>
+    <td> {{detailsUser.email}} </td>
+  </tr>
+  <tr>
+    <th> Address </th>
+    <td> {{detailsUser.address}} </td>
+  </tr>
+  <tr>
+    <th> Tel </th>
+    <td> {{detailsUser.tel}} </td>
+  </tr>
+  <tr>
+    <th> Profil </th>
+    <td> {{detailsUser.profil.libelle}} </td>
+  </tr>
+</table>
+  </div>
+<div class="row justify-content-center">
+  <button class="btn btn-back" [routerLink]="['/users']">Retour</button>
+</div>
+
