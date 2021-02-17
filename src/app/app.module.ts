@@ -45,6 +45,7 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { TriAlphaPipe } from './pipe/tri-alpha.pipe';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SummarizePipe } from './pipe/summarize.pipe';
+import { RefertielFilterPipe } from './pipe/refertiel-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { SummarizePipe } from './pipe/summarize.pipe';
     FilterPipe,
     TriAlphaPipe,
     SummarizePipe,
+    RefertielFilterPipe,
   ],
   imports: [
     BrowserModule,

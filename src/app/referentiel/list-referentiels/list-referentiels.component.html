@@ -1,17 +1,23 @@
 <div class="d-flex justify-content-between align-items-center p-2 title alert alert-primary">
   <div>
-    <input #inputElement  name="search" [(ngModel)]="search" class="form-control" type="text" placeholder="Filter par libelle, par groupe c...">
+    <input   name="search" (keyup)="indexAtrribute($event)" class="form-control" type="text" placeholder="Filter par libelle, par groupe c...">
   </div>
-  <div class="card-header  text-center font-weight-bold  shadow rounded">
-    Listes des Referentiels
+  <div>
+    <select  class="form-select" aria-label="Default select example" (change)="indexAtrribute($event)">
+      <option selected  value="">Filtrer les refs par groupe de competence</option>
+      <option *ngFor="let g of grpCompetence" value="{{g.libelle}}">{{g.libelle}}</option>
+    </select>
   </div>
+<!--  <div class="card-header  text-center font-weight-bold  shadow rounded">-->
+<!--    Listes des Referentiels-->
+<!--  </div>-->
   <div>
     <a [routerLink]="['/referentiels/add']" class="btn btn-sm"><i class="fa fa-plus"></i> <span>Add Referentiel</span></a>
   </div>
 </div>
 
 <section class="row">
-  <app-item-referentiel *ngFor="let ref of referentiels |filter: search   | paginate: { itemsPerPage: 3, currentPage: p } " [itemReferentiel]="ref"  class="col-sm-4 mb-4"></app-item-referentiel>
+  <app-item-referentiel *ngFor="let ref of referentiels |refertielFilter: search : index  | paginate: { itemsPerPage: 3, currentPage: p } " [itemReferentiel]="ref"  class="col-sm-4 mb-4"></app-item-referentiel>
 </section>
 <div class=" d-flex justify-content-center">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
