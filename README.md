@@ -1,27 +1,51 @@
-# ProjetFilRouge
+# Presentation GestionApprenant_front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.3.
+## Description
 
-## Development server
+Ce projet consiste à gerer la gestion des apprenants et de l'administration de l'ecole de formation Sonatel Academy.
+Il s'agit d'une Application web développée avec la technologie Angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Les fonctionnalités de l'application
 
-## Code scaffolding
+*partie authentification
+Ajouter, Lister, Modifier, Supprimer: 
+* des utilisateurs
+* des apprenants,
+* formateurs,
+* cm,
+* profil
+* referentiels
+* competences
+* groupe de competences,
+* promos,
+* profils de sortie...
+* scanner qr code pour voir le d'étail d'un user
+* possibilité exporter le tableau des users en format pdf
+* lire le programme d'un referentiel en format pdf...
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting started
 
-## Build
+Nous aborderons la configuration de l'environnement requise pour Angular. Pour installer Angular, nous avons besoin des éléments suivants:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* Nodejs:vous pouvez l'installer en suivant ce lien: https://nodejs.org/en/download/
 
-## Running unit tests
+Une fois nodejs installé, npm sera également installé avec lui. Pour vérifier si npm est installé ou non, tapez npm –v dans le terminal comme indiqué ci-dessous. Il affichera la version du npm.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* CLI angulaire: Tapez npm install –g @ angular/cli dans votre invite de commande pour installer angular cli sur votre système
 
-## Running end-to-end tests
+2. Cloner ou Télécharger le projet en local.
+3. Ouvrir le projet avec un editeur de code comme CodeBlocks ou un intellige comme PhpStorm
+4. Aprés l'ouverture du projet lancer le terminal de ce dernier
+5. Executer la commande npm install pour installer les dépendances du projet dans le dossier local node_modules.
+7. Et enfin Executer la commande ng serve --open pour démarrer le serveur et l'application sera ouverte sur votre navigateur et vous serez
+redirigé automatiquement sur la page de connexion:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Identifiant de connexion:
+email: hayes.rubie@upton.com
+password: password
+ 
+## Auteur
+Le projet a été réalisé par Rassoul Mbodj Apprenant à la Sonatel Academy
+Phone Number: +221 77 091 21 22
+Email: rasprod221@gmail.com
