@@ -3,3 +3,15 @@
   color: white;
   background-color: #328b8a;
 }
+
+a.btn {
+  color: #566787;
+  float: right;
+  font-size: 13px;
+  background: #fff;
+  border: none;
+  min-width: 50px;
+  border-radius: 2px;
+  outline: none !important;
+  margin-left: 10px;
+}

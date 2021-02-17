@@ -1,15 +1,63 @@
-<div class="card mb-3">
-  <h3 class="card-header">Développement web et mobile</h3>
-  <div class="card-body">
-    <p>De l’analyse du besoin à la mise en ligne, en passant par l’interface et la base
-      de données, le·la développeur·se web conçoit et programme des applications
-      web.</p>
+<div class="shadow-lg p-4 rounded-3">
+  <div class="float-end">
+    <i class="fa fa-edit fa-2x me-2" [routerLink]="['/groupe-competences/edit',itemReferentiel.id]"></i>
+    <i  (click)="delete(itemReferentiel.id)" class="fa fa-close fa-2x text-danger"></i>
   </div>
-  <hr>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Groupe de Compétences</li>
-    <li class="list-group-item">Programme</li>
-    <li class="list-group-item">Critère d'évaluation</li>
-    <li class="list-group-item">Critère d'admission</li>
-  </ul>
+  <button mdbBtn style="background-color: #31353d; color: white" class=" waves-light w-100" type="button" (click)="teste.toggle()" mdbWavesEffect>
+    {{itemReferentiel.libelle}}
+  </button>
+
+  <div class="" mdbCollapse #teste="bs-collapse">
+    <div class="alert alert-primary" role="alert">
+      <h6 class="text-danger">Présentation:</h6>
+      {{itemReferentiel.presentation |summarize: 100}}
+    </div>
+
+    <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="heading{{itemReferentiel.id}}">
+          <h4 class="panel-title text-center border border-dark rounded p-2">
+            <a class="text-dark" role="button" data-toggle="collapse" data-parent="#accordion1" href="{{'#collapse'+itemReferentiel.id}}" aria-expanded="true" aria-controls="collapseOne">
+              <h5><i class="fa fa-bookmark me-2"></i> Groupe Compétences</h5>
+            </a>
+          </h4>
+        </div>
+        <div id="collapse{{itemReferentiel.id}}" class="panel-collapse collapse in" role="tabpanel">
+          <div class="alert alert-primary" role="alert" *ngFor="let g of itemReferentiel.groupeCompetences; let i= index">
+            {{g.libelle}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-primary text-center" role="alert">
+      <button (click)="openProgramme()" class="btn-sm btn-outline-primary p-2 rounded"><i class="fa fa-file-pdf-o me-2"></i>Ouvrir Programme</button>
+    </div>
+
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="head{{itemReferentiel.id}}">
+            <h4 class="panel-title text-center border border-dark rounded p-2">
+              <a  class="text-dark" role="button" data-toggle="collapse" data-parent="#accordion" href="{{'#collaps'+itemReferentiel.id}}" aria-expanded="true" aria-controls="collapseOne">
+                <h5><i class="fa fa-info-circle me-2"></i> Les Critères</h5>
+              </a>
+            </h4>
+          </div>
+          <div id="collaps{{itemReferentiel.id}}" class="panel-collapse collapse in" role="tabpanel">
+            <h6 class="text-danger">Evaluation:</h6>
+            <div class="alert alert-primary" role="alert">
+              {{itemReferentiel.critereEvaluation}}
+            </div>
+            <h6 class="text-danger">Admission:</h6>
+            <div class="alert alert-primary" role="alert">
+              {{itemReferentiel.critereAdmission}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+</div>
 </div>

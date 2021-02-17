@@ -1,25 +1,33 @@
-<div class="card p-3 shadow rounded">
-  <div class="card-header text-center title mb-2"><h1>Ajouter Competence <i class="fa fa-user-o"></i></h1></div>
+<div class="mainscreen pt-5">
+  <form [formGroup]="addCompetence" (ngSubmit)="onSubmitForm(); addCompetence.reset()" class="w-50">
+    <h2 class="text-white title">Ajouter Competences <i class="fa fa-bookmark"></i></h2>
 
-  <form>
-    <fieldset>
-      <div class="form-group">
-        <label for="profil">Groupe de Competences</label>
-        <select class="form-control" id="profil">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+    <!-- For Full Name -->
+
+    <angular2-multiselect *ngIf="id==null" class="form-control mb-4" [data]="gcompetences" formControlName="groupeCompetence" [(ngModel)]="selectedItems"
+                          [settings]="dropdownSettings"
+    ></angular2-multiselect>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="libelle" formControlName="libelle">
+    </div>
+
+    <div formArrayName="niveaux"
+          *ngFor="let item of addCompetence.get('niveaux')['controls']; let i = index;">
+      <h3>Niveau {{i+1}}</h3>
+      <div [formGroupName]="i">
+        <input type="hidden" formControlName="id">
+        <div class="form-group">
+        <input class="form-control" formControlName="libelle" placeholder="libelle du niveau">
+        </div>
+        <div class="form-group">
+        <input class="form-control" formControlName="groupe_action" placeholder="actions">
+        </div>
+        <div class="form-group">
+        <input class="form-control" formControlName="critere_evaluation" placeholder="criteres">
+        </div>
       </div>
-      <div class="form-group">
-        <label for="libelle">Libelle</label>
-        <input type="text" class="form-control" id="libelle"  >
-      </div>
-      <button type="submit" class="btn title">Soumettre</button>
-    </fieldset>
+    </div>
+    <button class="submitbtn">Ajouter</button>
+
   </form>
 </div>
-
-

@@ -1,1 +1,113 @@
-<p>list-competences works!</p>
+<section class="min-vh-100">
+<div class="card-header title mb-4 text-center font-weight-bold  shadow rounded">
+  Listes des Compétences
+  <a [routerLink]="['/competences/add']" class="btn btn-sm"><i class="fa fa-plus"></i> <span>Add New</span></a>
+</div>
+
+  <div class="row bg-light p-5 border">
+    <div class="col-5 border">
+
+      <mdb-card-body>
+        <form class="form-inline justify-content-center mt-2 p-4">
+          <div class="form-group shadow-lg">
+            <label for="select"></label>
+            <select #select class="form-control form-select border-dark" id="select"  (change)="getCompetences(select.value)">
+              <option *ngFor="let g of gcompetences" value="{{g.id}}">{{g.libelle}}</option>
+            </select>
+          </div>
+        </form>
+
+        <!--Text-->
+        <div class="ps-4" id="myDIV">
+          <div class="list-group  shadow-lg mb-3" *ngFor="let c of competences; let i= index">
+            <div>
+                <i (click)="archive(c.id)" class="fa fa-close fa-2x me-3 actions text-danger float-end"></i>
+                <i class="fa fa-edit fa-2x me-3 actions  float-end" [routerLink]="['/competences/edit',c.id]"></i>
+            </div>
+            <a [ngClass]="{'active':i==0}"  (click)="getNiveaux(i)" class="list-group-item p-4 border-dark btnn">{{c.libelle}} <i class="fa fa-tasks float-end" ></i></a>
+          </div>
+        </div>
+      </mdb-card-body>
+
+    </div>
+    <div class="col-7 border">
+      <div class="p-5  rounded ">
+        <!-- Bordered tabs-->
+        <ul id="myTab1" role="tablist" class="nav nav-tabs nav-pills with-arrow flex-column flex-sm-row text-center">
+          <li class="nav-item flex-sm-fill">
+            <a id="home1-tab" data-toggle="tab" href="#home1" role="tab" aria-controls="home0" aria-selected="true" class="nav-link text-uppercase  font-weight-bold mr-sm-3 rounded-0 border active">NIVEAU 1</a>
+          </li>
+          <li class="nav-item flex-sm-fill">
+            <a id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home1" aria-selected="true" class="nav-link text-uppercase  font-weight-bold mr-sm-3 rounded-0 border">NIVEAU 2</a>
+          </li>
+          <li class="nav-item flex-sm-fill">
+            <a id="home3-tab" data-toggle="tab" href="#home3" role="tab" aria-controls="home2" aria-selected="true" class="nav-link text-uppercase  font-weight-bold mr-sm-3 rounded-0 border">NIVEAU 3</a>
+          </li>
+
+        </ul>
+        <div id="myTab1Content" class="tab-content" *ngIf="niveauxCompetences.length">
+          <div id="home1" role="tabpanel" aria-labelledby="home-tab" class=" tab-pane fade px-4 py-5 show active">
+            <div class="row">
+              <div class="col-6 border p-2 border-secondary">
+                <div class="card-title text-danger display-6">
+                  Groupe d'actions à réaliser:
+                </div>
+                <p class="lead font-italic">{{niveauxCompetences[0].groupe_action}}</p>
+              </div>
+              <div class="col-6 border p-2 border-secondary">
+                <div class="card-title text-danger display-6">
+                  Critères d'évaluation:
+                </div>
+                <p class="lead font-italic">{{niveauxCompetences[0].critere_evaluation}}</p>
+
+              </div>
+            </div>
+          </div>
+          <div id="home2" role="tabpanel" aria-labelledby="home-tab" class=" tab-pane fade px-4 py-5 show">
+            <div class="row">
+              <div class="col-6 border p-2 border-secondary">
+                <div class="card-title text-danger display-6">
+                  Groupe d'actions à réaliser:
+                </div>
+                <p class="lead font-italic">{{niveauxCompetences[1].groupe_action}}</div>
+              <div class="col-6 border p-2 border-secondary">
+                <div class="card-title text-danger display-6">
+                  Critères d'évaluation:
+                </div>
+                <p class="lead font-italic">{{niveauxCompetences[1].critere_evaluation}}</p>
+
+              </div>
+            </div>
+          </div>
+          <div id="home3" role="tabpanel" aria-labelledby="home-tab" class=" tab-pane fade px-4 py-5 show">
+            <div class="row">
+              <div class="col-6 border p-2 border-secondary">
+                <div class="card-title text-danger display-6">
+                  Groupe d'actions à réaliser:
+                </div>
+                <p class="lead font-italic">{{niveauxCompetences[2].groupe_action}}</div>
+              <div class="col-6 border p-2 border-secondary">
+                <div class="card-title text-danger display-6">
+                  Critères d'évaluation:
+                </div>
+                <p class="lead font-italic">{{niveauxCompetences[2].critere_evaluation}}</p>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- End bordered tabs -->
+      </div>
+
+    </div>
+  </div>
+</section>
+<!--<div id="myDIV">-->
+<!--  <button class="btn">1</button>-->
+<!--  <button class="btn active">2</button>-->
+<!--  <button class="btn">3</button>-->
+<!--  <button class="btn">4</button>-->
+<!--  <button class="btn">5</button>-->
+<!--</div>-->

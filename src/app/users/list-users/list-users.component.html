@@ -1,41 +1,50 @@
-<div class="card bg-light mb-5 w-100">
-  <div class="card-header font-weight-bold text-center">Liste des Utilisateurs</div>
-  <div class="card-body">
-    <h4  [routerLink]="['/users/add']" (click)="resetForm()" class="card-title btn btn-primary">Ajouter User <i class="fa fa-user-plus " aria-hidden="true"></i>
-    </h4>
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+          <div class="row mb-2">
+            <input #inputElement  name="search" (keyup)="sendMessage(inputElement.value)" class="form-control w-25" type="text" placeholder="Search">
+          </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <h2 class="text-white">Liste des <b>Utilisateurs</b></h2>
+          </div>
+          <div class="col-sm-7">
+            <a  [routerLink]="['/users/add']" (click)="resetForm()" class="btn btn-sm"><i class="fa fa-plus"></i> <span>Add New User</span></a>
+            <a href="#" class="btn btn-sm"><i class="fa fa-file"></i> <span>Export to Pdf</span></a>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Profil</th>
+          <th style="width: 12%">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let user of users |filter: search  | paginate: { itemsPerPage: 3, currentPage: p }; let i= index ">
+          <td>{{i+1}}</td>
+          <td><img *ngIf="user.avatar; else defaultAvatar" src="{{'data:image/jpg;base64,'+user.avatar}}" class="avatar" alt="Avatar">{{user.firstname}}
+            <ng-template #defaultAvatar><img src="assets/images/defaultAvatar.png" alt="avatar" class="avatar"></ng-template>
+          </td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.email}}</td>
+          <td><span class="status text-success">&bull;</span> {{user.profil.libelle}}</td>
+          <td>
+            <a [routerLink]="['/users',user.id]" class="edit" title="Settings" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
+            <a [routerLink]="['/users/edit',user.id]" class="edit" title="Settings" data-toggle="tooltip"><i class="fa fa-pencil"></i></a>
+            <a id="edit"  (click)="clickMethod(user.id)" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-close"></i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-    <table class="table table-bordered text-center">
-      <thead>
-      <tr>
-        <th scope="col">Avatar</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Prénom</th>
-        <th scope="col">Email</th>
-        <th scope="col">Profil</th>
-        <th scope="col" colspan="3">Actions</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr *ngFor="let user of users">
-        <th scope="row"><img class="rounded-circle" src="{{'data:image/jpg;base64,'+user.avatar}}" width="50px" height="50px" alt="avatar"></th>
-        <td>{{user.lastname}}</td>
-        <td>{{user.firstname}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.profil.libelle}}</td>
-        <td><a class="btn btn-sm btn-outline-primary" [routerLink]="['/users',user.id]">Details</a></td>
-              <td> <a class="btn btn-sm btn-outline-warning" [routerLink]="['/users/edit',user.id]">Edit</a></td>
-              <td> <a class="btn btn-sm btn-outline-danger"  (click)="clickMethod(user.id)">Supprimer</a></td>
-      </tr>
-      </tbody>
-    </table>
+    </div>
   </div>
 </div>
-
-
-
-
-
-
-
-

@@ -10,8 +10,9 @@ import {Router} from '@angular/router';
 })
 export class AuthComponent implements OnInit {
   sign: FormGroup | undefined
+  error: string=""
 
-  constructor(private authentificationService: AuthentificationService, private route: Router) {
+  constructor(private authentificationService: AuthentificationService) {
   }
 
 
@@ -25,16 +26,22 @@ export class AuthComponent implements OnInit {
          // @ts-ignore
          const token= response['token']
        const decodeToken= this.authentificationService.decodeToken(token)
-         console.log(decodeToken);
          if (!decodeToken.archived){
            this.authentificationService.setItem(token)
-           this.route.navigate(['/users'])
+           this.authentificationService.setUserInfo(decodeToken)
+            this.authentificationService.redirect();
          }else {
-           console.log('vous avez été archivé');
+           alert('vous avez été archivé');
          }
+       },
+       error => {
+         this.error="login ou mot de passe incorrecte !"
+         setTimeout(()=>{
+           this.error=""
+         },3000)
+
        }
      );
 
   }
-
 }

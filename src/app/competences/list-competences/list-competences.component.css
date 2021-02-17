@@ -1,0 +1,80 @@
+.list-group a{
+  color: #328b8a;
+}
+
+.list-group a:hover{
+  background-color: #328b8a;
+  color: white;
+  cursor: pointer;
+}
+
+@media (min-width: 576px) {
+  .rounded-nav {
+    border-radius: 50rem !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .rounded-nav .nav-link {
+    border-radius: 50rem !important;
+  }
+}
+
+.with-arrow .nav-link.active {
+  position: relative;
+  background-color: #328b8a;
+  color: white;
+}
+.with-arrow .nav-link:hover {
+  background-color: #328b8a;
+  color: white;
+}
+
+.with-arrow .nav-link.active::after {
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #328b8a;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+.lined .nav-link {
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.lined .nav-link:hover {
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+
+.nav-pills .nav-link {
+  color: #555;
+}
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+.btnn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.list-group .active{
+  background-color: #328b8a;
+  color: white;
+}
+.actions{
+  cursor: pointer;
+}
+

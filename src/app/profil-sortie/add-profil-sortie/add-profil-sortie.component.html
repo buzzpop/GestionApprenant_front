@@ -1,15 +1,13 @@
-<div class="card p-3 shadow rounded">
-  <div class="card-header text-center title mb-2"><h3>Ajouter Profil de Sortie <i class="fa fa-user-o"></i></h3></div>
+<form  #profilElement="ngForm"  class="w-50">
+    <h2 class="text-white title">Ajouter <i class="fa fa-user-circle-o"></i></h2>
 
-  <form #profilElement="ngForm">
-    <fieldset>
-      <div class="form-group">
-        <label for="nom">Libelle</label>
-        <input type="text" class="form-control" id="nom" ngModel name="libelle" #libelle="ngModel" required>
-      </div>
+    <div class="form-group">
+      <input type="text" class="form-control" ngModel name="libelle" #libelle="ngModel" required>
+    </div>
 
-      <button [disabled]="!profilElement.valid" [routerLink]="['/profil-sortie']" (click)="onSubmit(profilElement.value)" type="submit" class="btn title">Enregistrer</button>
-    </fieldset>
+    <button [disabled]="!profilElement.valid" [routerLink]="['/profil-sortie']" (click)="onSubmit(profilElement.value)" type="submit"  class="submitbtn border border-white">Ajouter</button>
+
   </form>
-</div>
+
+
 

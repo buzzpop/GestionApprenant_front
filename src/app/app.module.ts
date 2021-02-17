@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +15,6 @@ import { GroupeCompetencesComponent } from './groupe-competences/groupe-competen
 import { AddGroupCompetencesComponent } from './groupe-competences/add-group-competences/add-group-competences.component';
 import { ListGroupCompetencesComponent } from './groupe-competences/list-group-competences/list-group-competences.component';
 import { ItemGroupCompetenceComponent } from './groupe-competences/list-group-competences/item-group-competence/item-group-competence.component';
-import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { ProfilComponent } from './profil/profil.component';
 import { ListProfilsComponent } from './profil/list-profils/list-profils.component';
 import { UsersProfilComponent } from './profil/users-profil/users-profil.component';
@@ -36,7 +35,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InterceptorService} from './services/interceptor.service';
 import { AddProfilComponent } from './profil/add-profil/add-profil.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {FieldsetModule} from 'primeng/fieldset';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { CollapseModule, WavesModule } from 'angular-bootstrap-md';
+import { IconsModule } from 'angular-bootstrap-md'
+import {AngularMultiSelectModule} from 'angular2-multiselect-dropdown';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FilterPipe } from './pipe/filter.pipe';
+import { TriAlphaPipe } from './pipe/tri-alpha.pipe';
+import { QRCodeModule } from 'angularx-qrcode';
+import { SummarizePipe } from './pipe/summarize.pipe';
 
 @NgModule({
   declarations: [
@@ -53,7 +61,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AddGroupCompetencesComponent,
     ListGroupCompetencesComponent,
     ItemGroupCompetenceComponent,
-    JumbotronComponent,
     ProfilComponent,
     ListProfilsComponent,
     UsersProfilComponent,
@@ -70,14 +77,26 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ListUsersComponent,
     ReferentielComponent,
     AddProfilComponent,
+    FilterPipe,
+    TriAlphaPipe,
+    SummarizePipe,
   ],
   imports: [
     BrowserModule,
+    FieldsetModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    CollapseModule,
+    WavesModule,
+    IconsModule,
+    AngularMultiSelectModule,
+    NgxPaginationModule,
+    QRCodeModule,
+    MDBBootstrapModule.forRoot()
+
   ],
   providers: [
     {

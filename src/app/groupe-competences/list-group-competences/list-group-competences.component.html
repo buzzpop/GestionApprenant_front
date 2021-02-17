@@ -1,8 +1,8 @@
 <div class="card-header title mb-4 text-center font-weight-bold  shadow rounded">
   Listes des Groupes de Compétences
-  <i class="fa fa-user-plus float-right btn btn-sm text-white" [routerLink]="['/groupe-competences/add']"></i>
+  <a [routerLink]="['/groupe-competences/add']" class="btn btn-sm"><i class="fa fa-plus"></i> <span>Add New Groupe C</span></a>
 </div>
-<div class="row">
-  <app-item-group-competence *ngFor="let b of group"  class="col-sm-4 mb-4"></app-item-group-competence>
-</div>
+<section class="row">
+  <app-item-group-competence  *ngFor="let gC of groupeDeC" [itemGroupeDeCompetence]="gC"  class="col-sm-4 mb-4"></app-item-group-competence>
+</section>
 

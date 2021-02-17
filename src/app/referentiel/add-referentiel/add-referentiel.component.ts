@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-add-referentiel',
   templateUrl: './add-referentiel.component.html',
-  styleUrls: ['./add-referentiel.component.css']
+  styleUrls: ['./add-referentiel.component.css','../../users/add-user/add-user.component.css']
 })
 export class AddReferentielComponent implements OnInit {
 
@@ -12,4 +12,7 @@ export class AddReferentielComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleFileInput(target: any) {
+
+  }
 }

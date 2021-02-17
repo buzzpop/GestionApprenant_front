@@ -23,14 +23,17 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.InitForm()
+    console.log(this.addUserForm.get('password'));
     this.route.data.subscribe(
       (data:Data)=>{
         console.log(data['userToEdit'])
         if (data['userToEdit']){
           this.userService.fillFields(data['userToEdit'])
+          if (data['userToEdit'].avatar){
+            this.imgURL= 'data:image/jpg;base64,'+data['userToEdit'].avatar
+          }
           this.addUserForm.get('password').clearValidators()
           this.addUserForm.get('avatar').clearValidators()
-          console.log(this.imgURL)
 
         }
       }
@@ -57,8 +60,9 @@ export class AddUserComponent implements OnInit {
   }
 
   handleFileInput(e: any) {
+
   this.fileToUpload = e.files.item(0)
-    console.log( this.fileToUpload)
+    console.log(this.fileToUpload)
 
     let reader = new FileReader();
 
@@ -82,8 +86,10 @@ export class AddUserComponent implements OnInit {
     formData.append('profil',user.profil);
     formData.append('tel',user.tel);
     formData.append('address',user.address);
-    formData.append('avatar',  this.fileToUpload);
-    console.log(formData)
+    if (this.fileToUpload){
+      formData.append('avatar',  this.fileToUpload);
+    }
+
     if (!this.addUserForm.controls.$id.value){
 
 
@@ -94,12 +100,13 @@ export class AddUserComponent implements OnInit {
       error => console
         .log(error)
     )
+      this.imgURL=null;
     }
     else{
       this.userService.editUser(formData,this.addUserForm.controls.$id.value).subscribe(
         response=>{
           console.log(response)
-          this.router.navigate(['/users'])
+          this.router.navigateByUrl('/users/'+this.route.snapshot.paramMap.get('id'))
         },
         error => console
           .log(error)

@@ -1,16 +1,22 @@
-<div class="card mb-3">
-  <h3 class="card-header">Développer le Backend d'une Application Web</h3>
-  <div class="card-body">
-    <p>A partir d'un schéma
-      physique de données et
-      dans le contexte d'un
-      besoin client décrit, créer
-      une base de données sur
-      un SGBD désigné.</p>
+<div class="shadow-lg p-4 rounded-3">
+ <div class="float-end">
+ <i class="fa fa-edit fa-2x me-2" [routerLink]="['/groupe-competences/edit',itemGroupeDeCompetence.id]"></i>
+ <i  (click)="delete(itemGroupeDeCompetence.id)" class="fa fa-close fa-2x text-danger"></i>
+ </div>
+<button mdbBtn style="background-color: #31353d; color: white" class=" waves-light w-100" type="button" (click)="test.toggle()" mdbWavesEffect>
+ {{itemGroupeDeCompetence.libelle}}
+</button>
+
+<div class="" mdbCollapse #test="bs-collapse">
+  <p>{{itemGroupeDeCompetence.descriptif}}</p>
+  <h4 class="card-title">
+    Compétences:
+  </h4>
+
+  <div class="shadow-lg p-1 mb-2 text-center" *ngFor="let c of itemGroupeDeCompetence.competences">
+    <ul class="list-group">
+      <li class="list-group-item">{{c.libelle}}</li>
+    </ul>
   </div>
-  <hr>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Compétences</li>
-    <li class="list-group-item">Tags</li>
-  </ul>
+</div>
 </div>

@@ -1,50 +1,77 @@
-<div class="card p-2 shadow rounded">
-  <div class="row  d-flex justify-content-center">
-  <div class="avatar mb-2"><img *ngIf="fileToUpload" src="{{imgURL}}" alt="avatar"></div>
+<div class="mainscreen pt-5">
+  <div class="imgpart">
+    <img *ngIf="imgURL;else defaultAvatar" src="{{imgURL}}" class="heroimg" alt="">
+    <ng-template  #defaultAvatar><img src="assets/images/defaultAvatar.png" alt="avatar" class="heroimg"></ng-template>
   </div>
-  <div class="card-header text-center title mb-2"><h1>Ajouter Utilisateur <i class="fa fa-user-o"></i></h1></div>
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmitForm(); addUserForm.reset()" class="w-50">
+      <h2 class="text-white title">{{addUserForm.controls.$id.value? "Modifier User":"Ajouter un User"}} <i class="fa fa-user-circle-o"></i></h2>
+    <!-- For Full Name -->
+    <input  type="hidden" placeholder="id" formControlName="$id">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="FirstName" formControlName="firstname" id="firstName">
+      <small class="text-danger"
+             *ngIf="addUserForm.get('firstname').hasError('required') && addUserForm.get('firstname').touched">
+        This field is required.
+      </small>
+    </div>
 
-  <form [formGroup]="addUserForm" (ngSubmit)="onSubmitForm(); addUserForm.reset()">
-    <fieldset>
-      <input type="hidden" formControlName="$id">
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" class="form-control" id="nom"  formControlName="lastname" >
-      </div>
-      <div class="form-group">
-        <label for="prenom">Prenom</label>
-        <input type="text" class="form-control" id="prenom"  formControlName="firstname" >
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email"  formControlName="email" >
-      </div>
-      <div class="form-group" *ngIf="!addUserForm.controls['$id'].value">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password"   formControlName="password" >
-      </div>
-      <div class="form-group">
-        <label for="address">Adresse</label>
-        <input type="text" class="form-control" id="address"  formControlName="address" >
-      </div>
+    <div class="form-group">
+      <input type="text" class="form-control"  placeholder="lastName"  formControlName="lastname" id="lastName">
+      <small class="text-danger"
+             *ngIf="addUserForm.get('lastname').hasError('required') && addUserForm.get('lastname').touched">
+        This field is required.
+      </small>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Email"  formControlName="email" id="email">
+      <small class="text-danger"
+             *ngIf="addUserForm.get('email').invalid && addUserForm.get('email').touched">
+        enter valid email.
+      </small>
 
-      <div class="form-group">
-        <label for="tel">Tel</label>
-        <input type="tel" class="form-control" id="tel"  formControlName="tel" >
-      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="profil">Profil</label>
-        <select class="form-control" id="profil"  formControlName="profil">
-          <option [disabled]="addUserForm.controls['$id'].value" *ngFor="let p of profil" value="{{p.id}}">{{p.libelle}}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="file">Avatar</label>
-        <input   (change)="handleFileInput($event.target)" type="file" class="form-control-file" id="file"  formControlName="avatar" >
-      </div>
-      <button [disabled]="!addUserForm.valid" type="submit" class="btn title">Enregistrer</button>
-    </fieldset>
+    <div class="form-group" *ngIf="!addUserForm.controls['$id'].value">
+      <input type="password" class="form-control"   placeholder="Password"   formControlName="password" id="password">
+      <small class="text-danger"
+             *ngIf="addUserForm.get('password').hasError('required') && addUserForm.get('password').touched">
+      password required.
+      </small>
+    </div>
+    <div class="form-group" *ngIf="!addUserForm.controls['$id'].value">
+      <input type="password" class="form-control"   placeholder="Confirmation password" formControlName="passwordC">
+      <small class="text-danger"
+             *ngIf="addUserForm.get('passwordC').hasError('required') && addUserForm.get('passwordC').touched">
+       confirmation password required.
+      </small>
+      <small class="text-danger"
+             *ngIf=" addUserForm.get('password').dirty && addUserForm.get('passwordC').dirty && addUserForm.get('password').value != addUserForm.get('passwordC').value ">
+          les 2 mots de passe doivent etre identique
+      </small>
+    </div>
+  <div class="form-group">
+      <input type="text" class="form-control"    placeholder="Address"  formControlName="address" id="adresse">
+    </div>
+  <div class="form-group">
+      <input type="tel" class="form-control"   placeholder="Tel"   formControlName="tel" id="tel">
+    </div>
+
+    <div class="form-group">
+    <select  class="form-select form-control"   formControlName="profil" aria-label="Default select example">
+      <option selected disabled>Séléctionner un Profil</option>
+      <option   [disabled]="addUserForm.controls['$id'].value" *ngFor="let p of profil" value="{{p.id}}">{{p.libelle}}</option>
+    </select>
+    </div>
+    <div class="form-group">
+      <input type="file" accept="image/*"
+             class="form-control-file border"
+             formControlName="avatar"
+             id="avatar"
+             (change)="handleFileInput($event.target)">
+    </div>
+
+    <!-- For Submit Button-->
+    <button  [disabled]="!addUserForm.valid" class="submitbtn">{{addUserForm.controls.$id.value? "Modifier":"Ajouter"}}</button>
+
   </form>
 </div>
-

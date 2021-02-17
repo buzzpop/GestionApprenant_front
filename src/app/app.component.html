@@ -1,5 +1,2 @@
 <app-header *ngIf="authentificationService.loggedIn()"></app-header>
-<app-jumbotron *ngIf="authentificationService.loggedIn()"></app-jumbotron>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<app-auth *ngIf="!authentificationService.loggedIn()"></app-auth>

@@ -5,14 +5,29 @@ import {ProfilService} from '../../services/profil.service';
 @Component({
   selector: 'app-list-profils',
   templateUrl: './list-profils.component.html',
-  styleUrls: ['./list-profils.component.css']
+  styleUrls: ['./list-profils.component.css','../../users/list-users/list-users.component.css']
 })
 export class ListProfilsComponent implements OnInit {
   profils: any=[]
+  p = 1;
+  search: any;
 
   constructor(private profilService: ProfilService) { }
 
   ngOnInit(): void {
+
+    this.profilService.refresh.subscribe(
+      ()=>{
+        this.profils=[]
+        this.getProfils();
+      }
+    )
+
+    this.getProfils()
+
+  }
+
+  private getProfils(){
     this.profilService.findAllProfil().subscribe(
       response=>{
         // @ts-ignore
@@ -40,6 +55,11 @@ export class ListProfilsComponent implements OnInit {
         error => console.log(error)
       )
     }
+  }
+
+  edit(id:any){
+
+
   }
 
 }

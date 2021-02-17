@@ -1,60 +1,220 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" [routerLink]="['/']"><i class="fa fa-home fa-1x" aria-hidden="true"></i></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" ><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Brief
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Rendus</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" ><i class="fa fa-bandcamp" aria-hidden="true"></i> Explorer</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" href="#"><i class="fa fa-comments" aria-hidden="true"></i> Forum</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" [routerLink]="['/add-promos']">Créer Promos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/referentiels']">Référentiels</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['groupe-competences']">Groupe de Compétences</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/competences']">Compétences</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Groupe de Tags</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['profil-sortie']">Profil de Sortie</a>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">Sonatel Academy</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
         </div>
-      </li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Users</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" [routerLink]="['users']">Utilisateurs</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['profils']">Profils</a>
-
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic" style="height: 50px; border-radius: 25%">
+          <img class="img-responsive img-rounded" src="{{'data:image/jpg;base64,'+userInformations.avatar}}"
+               alt="User picture" height="20">
         </div>
-      </li>
-    </ul>
+        <div class="user-info">
+          <span class="user-name">{{userInformations.firstname}}
+            <strong>{{userInformations.lastname}}</strong>
+          </span>
+          <span class="user-role">{{userInformations.roles[0]|slice:5}}</span>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+          <div class="input-group">
+            <label>
+              <input  #inputElement type="text" class="form-control search-menu" placeholder="Search...">
+            </label>
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- sidebar-search  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a>
+              <i class="fa fa-address-card"></i>
+              <span class="dropdown-toggle"  role="button" data-bs-toggle="dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Users</span>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['users']">Utilisateurs</a></li>
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['profils']">Profils</a></li>
+              </ul>
+            </a>
+          </li>
 
-    <form class="form-inline my-2 my-lg-0">
-      <label>
-        <input #inputElement name="search" class="form-control mr-sm-2" type="text" placeholder="Search">
-      </label>
-    </form>
-    <button class="btn btn-outline-danger" (click)="logOut()">Log Out</button>
-  </div>
-</nav>
+          <li class="sidebar-dropdown">
+            <a>
+              <i class="fa fa-address-card"></i>
+              <span class="dropdown-toggle" role="button" data-bs-toggle="dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Paramètres</span>
+              <ul class="dropdown-menu">
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['/add-promos']">Promos</a></li>
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['/referentiels']">Référentiels</a></li>
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['groupe-competences']">Groupe de Compétences</a></li>
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['/competences']">Compétences</a></li>
+                <li class="nav-item"><a class="dropdown-item" href="#">Groupe de Tag</a></li>
+                <li class="nav-item"><a class="dropdown-item" [routerLink]="['profil-sortie']">Profil de Sortie</a></li>
+              </ul>
+            </a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" ><i class="fa fa-calendar-minus-o" aria-hidden="true"></i> Brief
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" ><i class="fa fa-floppy-o" aria-hidden="true"></i> Rendus</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" ><i class="fa fa-bandcamp" aria-hidden="true"></i> Explorer</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" href="#"><i class="fa fa-comments" aria-hidden="true"></i> Forum</a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-shopping-cart"></i>
+              <span>E-commerce</span>
+              <span class="badge badge-pill badge-danger">3</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Products
 
-
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Orders</a>
+                </li>
+                <li>
+                  <a href="#">Credit cart</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-gem"></i>
+              <span>Components</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">General</a>
+                </li>
+                <li>
+                  <a href="#">Panels</a>
+                </li>
+                <li>
+                  <a href="#">Tables</a>
+                </li>
+                <li>
+                  <a href="#">Icons</a>
+                </li>
+                <li>
+                  <a href="#">Forms</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-area-chart"></i>
+              <span>Charts</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Pie chart</a>
+                </li>
+                <li>
+                  <a href="#">Line chart</a>
+                </li>
+                <li>
+                  <a href="#">Bar chart</a>
+                </li>
+                <li>
+                  <a href="#">Histogram</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-globe"></i>
+              <span>Maps</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Google maps</a>
+                </li>
+                <li>
+                  <a href="#">Open street map</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="header-menu">
+            <span>Extra</span>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Documentation</span>
+              <span class="badge badge-pill badge-primary">Beta</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-folder"></i>
+              <span>Examples</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell"></i>
+        <span class="badge badge-pill badge-warning notification">3</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-envelope"></i>
+        <span class="badge badge-pill badge-success notification">7</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-power-off" (click)="logOut()"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content" style="background-color: #e9ecef">
+    <router-outlet></router-outlet>
+  </main>
+  <!-- page-content" -->
+</div>

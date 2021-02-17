@@ -1,35 +1,45 @@
-<div class="container-fluid">
-  <div class="card p-3 shadow rounded">
-    <div class="card-header text-center title mb-2"><h1>Formulaire de Connexion<i class="fa fa-sign-in ml-3" aria-hidden="true"></i>
-    </h1>
-    </div>
-    <div class="row no-gutter p-3">
-      <div class="col-md-6 d-none d-md-flex bg-image"></div>
+<section id="cover" class="min-vh-100">
+  <div id="cover-caption">
+    <div class="container">
+      <div class="row text-white">
+        <div class="col-6">
+        <div class="mx-auto text-center form p-4 shadow-lg rounded">
+          <small class="text-danger" *ngIf="error">{{error}}</small>
+          <h1 class="display-4 py-2 text-truncate">Sonatel Academy.</h1>
+          <div class="px-2">
+            <form  #credentials=ngForm (ngSubmit)="onSubmit(credentials.value); credentials.reset()" class="justify-content-center">
+              <div class="form-group">
+                <label class="sr-only">Name</label>
 
-      <div class="col-md-6 bg-light">
-        <div class="login d-flex align-items-center py-5">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-10 col-xl-7 mx-auto">
-                <form #credentials=ngForm (ngSubmit)="onSubmit(credentials.value); credentials.reset()">
-                  <div class="form-group mb-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" ngModel name="email"
-                           #mail="ngModel">
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="pwd">Password</label>
-                    <input type="password" class="form-control" id="pwd" ngModel name="password"
-                           #pwd="ngModel">
-                  </div>
-                  <button type="submit"  class="btn title btn-block text-uppercase mt-4 rounded-pill shadow-sm">Se Connecter</button>
-
-                </form>
+                  <input type="email" email class="form-control" placeholder="jane.doe@example.com"
+                         ngModel name="email" #mail="ngModel" required>
+                <span class="text-danger" *ngIf="mail.invalid && mail.dirty">Entrer un email valide</span>
               </div>
-            </div>
+              <div class="form-group">
+                <label class="sr-only">Email</label>
+                  <input type="password" class="form-control" placeholder="*********"
+                         ngModel name="password" required #pwd="ngModel">
+                <span class="text-danger" *ngIf="pwd.invalid && pwd.touched">
+                  entrer votre mot de passe
+                </span>
+              </div>
+              <button [disabled]="credentials.invalid" class="form-submit btn btn-outline-success">Se connecter  <i class="fa fa-sign-in"></i> </button>
+            </form>
+          </div>
+        </div>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+          <div class="signup-image">
+            <figure><img src="./assets/images/Logo-Sonatel-Academy-480_1-1.png" width="600px" alt="chanter l'image"></figure>
+            <footer class="page-footer pt-5">
+              <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="https://www.academysonatel.com" class="font-weight-bold sonatel">Sonatel Academy</a>
+              </div>
+            </footer>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+

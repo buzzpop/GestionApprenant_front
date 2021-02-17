@@ -5,22 +5,34 @@ import {Profil} from '../../models/Profil';
 @Component({
   selector: 'app-list-profil-sortie',
   templateUrl: './list-profil-sortie.component.html',
-  styleUrls: ['./list-profil-sortie.component.css','../../users/add-user/add-user.component.css']
+  styleUrls: ['./list-profil-sortie.component.css','../../users/list-users/list-users.component.css']
 })
 export class ListProfilSortieComponent implements OnInit {
   profilSortie: any=[]
+  p= 1;
+  search:any
 
   constructor(private profilSortieService: ProfilSortieService) { }
 
   ngOnInit(): void {
+    this.profilSortieService.refresh.subscribe(
+      ()=>{
+        this.profilSortie=[];
+        this.getProfilSorties()
+      }
+    )
+    this.getProfilSorties()
+  }
+
+  getProfilSorties(){
     this.profilSortieService.getProfilSortie().subscribe(
       (response)=>{
-   // @ts-ignore
+        // @ts-ignore
         for (let pS of response['hydra:member']){
           const profilS = new  Profil()
           profilS.deserialize(pS)
           this.profilSortie.push(profilS)
-   }
+        }
         console.log(this.profilSortie)
       }
     )
@@ -36,6 +48,5 @@ export class ListProfilSortieComponent implements OnInit {
       )
     }
   }
-
 
 }

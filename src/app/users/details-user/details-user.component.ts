@@ -8,6 +8,7 @@ import {ActivatedRoute, Data} from '@angular/router';
 })
 export class DetailsUserComponent implements OnInit {
 detailsUser:any
+  qrCodeInfo:any=[]
 
   constructor(private route: ActivatedRoute) { }
 
@@ -18,6 +19,6 @@ detailsUser:any
       console.log(this.detailsUser)
     }
   )
-
+  this.qrCodeInfo.push(this.detailsUser.email)
   }
 }

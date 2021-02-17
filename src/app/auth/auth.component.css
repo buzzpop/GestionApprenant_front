@@ -1,11 +1,40 @@
-.login,
-.image {
-  min-height: 30vh;
+.ng-invalid.ng-touched{
+  border-color: red;
+}
+.ng-valid{
+  border-color: green;
+}
+.container h1{
+  color: #328b8a;
 }
 
-.bg-image {
-  background-image: url('src/assets/images/Logo-Sonatel-Academy-480_1-1.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
+#cover {
+
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
+
+#cover-caption {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+  border-radius: 10px;
+}
+section{
+  background-color: currentColor;
+}
+

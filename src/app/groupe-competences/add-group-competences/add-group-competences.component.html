@@ -1,29 +1,23 @@
-<div class="card p-3 shadow rounded">
-  <div class="card-header text-center title mb-2"><h1>Ajouter Groupe de Compétences <i class="fa fa-user-o"></i></h1></div>
+<div class="mainscreen pt-5">
+  <form [formGroup]="form" class="w-50" (ngSubmit)="onSubmit(); form.reset()">
+    <h2 class="text-white title">{{form.controls.$id.value? "Modifier Groupe de Competences ":" Ajouter Groupe de Competences"}} <i class="fa fa-bookmark"></i></h2>
+    <input  type="hidden" placeholder="id" formControlName="$id">
+    <!-- For Full Name -->
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Libelle" formControlName="libelle">
+    </div>
 
-  <form>
-    <fieldset>
-      <div class="form-group">
-        <label for="nom">Libelle</label>
-        <input type="text" class="form-control" id="nom"  >
-      </div>
-      <div class="form-group">
-        <label for="desc">Descriptif</label>
-        <textarea class="form-control" id="desc" rows="5"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="exampleSelect2">Compétences</label>
-        <select multiple="" class="form-control" id="exampleSelect2">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <textarea type="text" class="form-control" rows="7"  placeholder="descriptif"  formControlName="descriptif"><textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
 
-      <button type="submit" class="btn title">Enregistrer</button>
-    </fieldset>
+    <angular2-multiselect class="form-control mb-4" [data]="competences" formControlName="competences" [(ngModel)]="selectedItems"
+                          [settings]="dropdownSettings"
+    ></angular2-multiselect>
+    <!-- For Submit Button-->
+    <button class="submitbtn">{{form.controls.$id.value? "Modifier":" Ajouter"}} </button>
+
   </form>
 </div>
+
 

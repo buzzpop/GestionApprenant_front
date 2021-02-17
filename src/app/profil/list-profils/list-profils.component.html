@@ -1,35 +1,48 @@
-<div class="card bg-light mb-3 w-100">
-  <div class="card-header font-weight-bold text-center">Liste des Profils</div>
-  <div class="card-body">
-    <h4  [routerLink]="['/profils/add']" class="card-title btn btn-primary"><i class="fa fa-user-plus " aria-hidden="true"></i>
-    </h4>
-
-    <table class="table table-bordered text-center">
-      <thead>
-      <tr>
-        <th scope="col">Libelle</th>
-
-        <th scope="col" colspan="2">Actions</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr *ngFor="let profil of profils">
-        <td>{{profil.libelle}}</td>
-        <td><a class="btn btn-sm btn-outline-primary" [routerLink]="[profil.id,'users']">{{'Liste des '+ profil.libelle}}</a></td>
-        <td> <a class="btn btn-sm btn-outline-danger"  (click)="clickMethod(profil.id)">Supprimer</a></td>
-      </tr>
-      </tbody>
-    </table>
+<div class="container-xl">
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="d-flex justify-content-center">
+          <router-outlet></router-outlet>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div>
+            <input #inputElement  name="search" [(ngModel)]="search" class="form-control" type="text" placeholder="Filter par libelle...">
+          </div>
+          <div>
+            <a  [routerLink]="['/profils/add']" class="btn btn-sm"><i class="fa fa-plus"></i> <span>Add New Profil</span></a>
+          </div>
+        </div>
+      </div>
+      <h2 class="text-dark text-center">Liste des <b>Profils</b></h2>
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Libelle</th>
+          <th colspan="3">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let profil of profils |filter: search |  paginate: { itemsPerPage: 6, currentPage: p }; let i= index ">
+          <td>{{i+1}}</td>
+          <td>{{profil.libelle}}</td>
+          <td>
+          <a class="btn btn-sm btn-outline-primary" [routerLink]="[profil.id,'users']">{{'Liste des '+ profil.libelle}}</a>
+          </td>
+          <td><a [routerLink]="['/profils/edit',profil.id]" class="edit" title="Settings" data-toggle="tooltip"><i class="fa fa-pencil"></i></a></td>
+          <td><a  (click)="clickMethod(profil.id)" class="delete" title="Delete" data-toggle="tooltip"><i class="fa fa-close"></i></a></td>
+        </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col">
-    <router-outlet></router-outlet>
-  </div>
 
-</div>
+
+
 
 
 

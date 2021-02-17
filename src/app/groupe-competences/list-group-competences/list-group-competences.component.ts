@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GroupeDeCompetencesService} from '../../services/groupe-de-competences.service';
 
 @Component({
   selector: 'app-list-group-competences',
@@ -6,12 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-group-competences.component.css']
 })
 export class ListGroupCompetencesComponent implements OnInit {
-  group = [
-    1, 2, 3, 4, 5, 6
-  ];
-  constructor() { }
+  groupeDeC:any = []
+
+  constructor(private grpCService: GroupeDeCompetencesService,
+       ) { }
 
   ngOnInit(): void {
+    this.grpCService.getGrpCompetences().subscribe(
+
+      (grpC:any)=>{
+        this.grpCService.getC(grpC["hydra:member"])
+        this.grpCService.refreshC().subscribe(
+          data=>{
+            for (let gC of grpC['hydra:member']){
+              this.groupeDeC.push(gC)
+            }
+          }
+        )
+
+      }
+    )
+
   }
 
 }

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserModel} from '../models/user.model';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,14 @@ export class UsersService {
 
   constructor( private http: HttpClient) { }
 
+  private updateTable = new BehaviorSubject<any>('')
+
+  getUsers(table:any){
+    return this.updateTable.next(table)
+  }
+  updateUsersTable():Observable<any>{
+    return this.updateTable.asObservable();
+  }
 
   findAllUser(){
 
@@ -35,17 +44,29 @@ export class UsersService {
     return this.http.get(this.env+`/admin/users/${id}`)
   }
 
+  sort(tab: any){
+    tab.sort((a:any, b:any)=>{
+      if (a.lastname > b.lastname){
+        return 1
+      }
+      if (a.lastname < b.lastname){
+        return -1
+      }
+      return 0
+    });
+  }
+
   form: FormGroup = new FormGroup({
     $id:new  FormControl(''),
     firstname: new FormControl(null,Validators.required),
     lastname: new FormControl(null,Validators.required),
     email: new FormControl(null,Validators.email),
-    password: new FormControl(null,[Validators.required,Validators.minLength(6)]),
+    password: new FormControl(null,Validators.required),
+    passwordC: new FormControl(null,Validators.required),
     profil: new FormControl(null,Validators.required),
-    tel: new FormControl(null,[Validators.required,
-      Validators.minLength(9),Validators.maxLength(9)]),
+    tel: new FormControl(null,Validators.required),
     address: new FormControl(null,Validators.required),
-    avatar: new FormControl(null,Validators.required),
+    avatar: new FormControl(null),
   });
 
   fillFields(user:UserModel){
@@ -57,5 +78,6 @@ export class UsersService {
     this.form.controls['tel'].setValue(user.tel);
     this.form.controls['address'].setValue(user.address);
   }
+
 
 }
